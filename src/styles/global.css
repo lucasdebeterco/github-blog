@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px theme('colors.blue');
+}
+
+body {
+    background-color: theme('colors.base-background');
+    color: theme('colors.base-text');
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font: 400 1rem 'Nunito', sans-serif;
+}
