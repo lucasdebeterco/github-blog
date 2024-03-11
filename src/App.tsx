@@ -1,6 +1,5 @@
 import cover from './assets/cover.png'
 import { Profile } from './components/Profile.tsx'
-import { trimString } from './utils/trimString.ts'
 
 export function App() {
     return (
@@ -30,8 +29,8 @@ export function App() {
                                 structures</h3>
                             <span className="whitespace-nowrap text-[0.875rem] text-base-span">Há 1 dia</span>
                         </header>
-                        <p>
-                            {trimString('Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available is JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.', 200)}
+                        <p className="line-clamp-5">
+                            Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available is JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
                         </p>
                     </div>
 
@@ -41,8 +40,8 @@ export function App() {
                                 structures</h3>
                             <span className="whitespace-nowrap text-[0.875rem] text-base-span">Há 1 dia</span>
                         </header>
-                        <p>
-                            {trimString('Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available is JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.', 200)}
+                        <p className="line-clamp-5">
+                            Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available is JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
                         </p>
                     </div>
 
@@ -52,8 +51,8 @@ export function App() {
                                 structures</h3>
                             <span className="whitespace-nowrap text-[0.875rem] text-base-span">Há 1 dia</span>
                         </header>
-                        <p>
-                            {trimString('Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available is JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.', 200)}
+                        <p className="line-clamp-5">
+                            Programming languages all have built-in data structures, but these often differ from one language to another. This article attempts to list the built-in data structures available is JavaScript and what properties they have. These can be used to build other data structures. Wherever possible, comparisons with other languages are drawn.
                         </p>
                     </div>
                 </div>
