@@ -29,7 +29,13 @@ export function Profile() {
 
     return (
         <div className="relative mt-[-5rem] flex items-center gap-[2rem] rounded-[10px] bg-base-profile px-[2.5rem] py-[2rem]">
-            <img src={user.avatar_url} alt="Imagem do Perfil Github" width={148} draggable={false} />
+            <img
+                src={user.avatar_url}
+                alt="Imagem do Perfil Github"
+                width={148}
+                draggable={false}
+                className="rounded-[10px]"
+            />
             <div className="flex flex-col gap-[0.5rem]">
                 <div className="flex items-center justify-between gap-[0.5rem]">
                     <h2 className="text-[1.5rem] text-base-title">{user.name}</h2>
