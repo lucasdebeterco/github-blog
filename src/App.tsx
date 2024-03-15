@@ -1,22 +1,25 @@
-import { Toaster } from 'react-hot-toast'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
-import cover from './assets/cover.png'
-import { PostsList } from './components/PostsList.tsx'
-import { Profile } from './components/Profile.tsx'
+import { BaseLayout } from './layouts/Layout.tsx'
+import { ErrorPage } from './pages/ErrorPage.tsx'
+import { Home } from './pages/Home.tsx'
+import { Issue } from './pages/Issue.tsx'
 
 export function App() {
+    const router = createBrowserRouter([{
+        path: '/',
+        element: <BaseLayout />,
+        errorElement: <ErrorPage />,
+        children: [{
+            path: '/',
+            element: <Home />,
+        }, {
+            path: 'issue/:issueId',
+            element: <Issue />
+        }, ]
+    }])
+
     return (
-        <div>
-            <header>
-                <img src={cover} alt="" draggable={false}/>
-            </header>
-
-            <div className="mx-auto max-w-[min(864px,100vw-60px)]">
-                <Profile/>
-                <PostsList />
-            </div>
-
-            <Toaster position="top-center" />
-        </div>
+        <RouterProvider router={router} />
     )
 }
