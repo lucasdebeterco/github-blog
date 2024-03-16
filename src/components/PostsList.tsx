@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import { Link } from 'react-router-dom'
 
 interface IIssue {
+    number: number
     title: string
     created_at: string
     body: string
@@ -40,7 +42,11 @@ export function PostsList() {
 
             <div className="my-[3rem] grid grid-cols-[repeat(auto-fit,minmax(416px,1fr))] gap-[2rem]">
                 {filteredIssues.map((issue) => (
-                    <div className="flex flex-col gap-[1.25rem] rounded-[10px] bg-base-post p-[2rem]" key={issue.title}>
+                    <Link
+                        className="flex flex-col gap-[1.25rem] rounded-[10px] bg-base-post p-[2rem]"
+                        key={issue.title}
+                        to={`/issue/${issue.number}`}
+                    >
                         <header className="flex justify-between">
                             <h3 className="text-[1.25rem] text-base-title">{issue.title}</h3>
                             <span className="whitespace-nowrap text-[0.875rem] text-base-span">{issue.created_at} Há 1 dia</span>
@@ -48,7 +54,7 @@ export function PostsList() {
                         <p className="line-clamp-5">
                             {issue.body}
                         </p>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </>)

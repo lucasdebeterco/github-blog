@@ -10,7 +10,9 @@ export function BaseLayout() {
                 <img src={cover} alt="" draggable={false}/>
             </header>
 
-            <Outlet/>
+            <div className="mx-auto max-w-[min(864px,100vw-60px)]">
+                <Outlet/>
+            </div>
 
             <Toaster position="top-center"/>
         </>
