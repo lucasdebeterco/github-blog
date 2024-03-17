@@ -1,36 +1,45 @@
-import { Buildings, Chats, GithubLogo } from '@phosphor-icons/react'
+import { ArrowLeft, ArrowSquareOut, Buildings, Chats, GithubLogo } from '@phosphor-icons/react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 
+import { IssuesContext } from '../context/IssuesContext.tsx'
+
 export function Issue() {
+    const { issues } = useContext(IssuesContext)
+    const issue = issues[0]
+    console.log(issues)
+
     return (
         <div>
-            <div className="rounded-[10px] bg-base-profile">
+            <div className="relative mt-[-5rem] rounded-[10px] bg-base-profile p-[2rem]">
                 <div className="flex justify-between">
-                    <Link to={'/'}>
+                    <Link to={'/'} className="flex gap-[0.5rem] text-[0.75rem] text-blue">
+                        <ArrowLeft size={14} />
                         VOLTAR
                     </Link>
 
-                    <Link to={'/'}>
-                        VER NO GITHUB
+                    <Link to={issue.user.html_url} className="flex gap-[0.5rem] text-[0.75rem] text-blue">
+                        GITHUB
+                        <ArrowSquareOut size={14}/>
                     </Link>
                 </div>
 
-                <h1>
-                    JavaScript data types and data structures
+                <h1 className="mt-[1.125rem] text-[1.25rem] text-base-title">
+                    {issue.title}
                 </h1>
 
                 <div className="mt-[0.75rem] flex gap-[1.5rem]">
                     <div className="flex items-center gap-[0.5rem]">
                         <GithubLogo size={18} className="text-base-label"/>
-                        <span className="text-base-subtitle">cameronwll</span>
+                        <span className="text-base-span">{issue.user.login}</span>
                     </div>
                     <div className="flex items-center gap-[0.5rem]">
                         <Buildings size={18} className="text-base-label"/>
-                        <span className="text-base-subtitle">Há 1 dia</span>
+                        <span className="text-base-span">Há {issue.created_at}</span>
                     </div>
                     <div className="flex items-center gap-[0.5rem]">
                         <Chats size={18} className="text-base-label"/>
-                        <span className="text-base-subtitle">Comentários</span>
+                        <span className="text-base-span">{issue.comments} Comentários</span>
                     </div>
                 </div>
             </div>

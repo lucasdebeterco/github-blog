@@ -1,30 +1,13 @@
-import { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-interface IIssue {
-    number: number
-    title: string
-    created_at: string
-    body: string
-}
+import { IssuesContext } from '../context/IssuesContext.tsx'
 
 export function PostsList() {
-    const [issues, setIssues] = useState<IIssue[]>([])
+    const { issues } = useContext(IssuesContext)
+
     const [search, setSearch] = useState('')
-
     const filteredIssues = search.length > 0 ? issues.filter((filter) => filter.title.includes(search)) : issues
-
-    async function fetchIssues() {
-        const response = await fetch('https://api.github.com/search/issues?q=repo:lucasdebeterco/github-blog')
-        const data = await response.json()
-
-        response.status === 200 ? setIssues(data.items) : toast.error(data.message)
-    }
-
-    useEffect(() => {
-        fetchIssues()
-    }, [])
 
     return (
         <>

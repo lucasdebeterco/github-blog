@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
+import { IssuesContextProvider } from './context/IssuesContext.tsx'
 import { BaseLayout } from './layouts/Layout.tsx'
 import { ErrorPage } from './pages/ErrorPage.tsx'
 import { Home } from './pages/Home.tsx'
@@ -20,6 +21,8 @@ export function App() {
     }])
 
     return (
-        <RouterProvider router={router} />
+        <IssuesContextProvider>
+            <RouterProvider router={router} />
+        </IssuesContextProvider>
     )
 }
