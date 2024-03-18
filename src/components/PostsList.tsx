@@ -1,3 +1,5 @@
+import { formatDistance } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -14,7 +16,13 @@ export function PostsList() {
             <div className="mt-[5rem] flex flex-col gap-[0.75rem]">
                 <div className="flex justify-between">
                     <h3 className="text-[1.125rem] text-base-subtitle">Publicações</h3>
-                    <span className="text-[0.875rem] text-base-span">6 publicações</span>
+                    <span className="text-[0.875rem] text-base-span">
+                        {issues.length ? (
+                            `${issues.length} publica${issues.length > 1 ? 'ções' : 'ção'}`
+                        ) : (
+                            'Nenhuma publicação'
+                        )}
+                    </span>
                 </div>
                 <input
                     className="w-full rounded-[6px] border-[1px] border-base-border bg-base-input p-[1rem] placeholder:text-base-label"
@@ -32,7 +40,12 @@ export function PostsList() {
                     >
                         <header className="flex justify-between">
                             <h3 className="text-[1.25rem] text-base-title">{issue.title}</h3>
-                            <span className="whitespace-nowrap text-[0.875rem] text-base-span">{issue.created_at} Há 1 dia</span>
+                            <span className="whitespace-nowrap text-[0.875rem] text-base-span">
+                                {formatDistance(new Date(issue.created_at), new Date(), {
+                                    addSuffix: true,
+                                    locale: ptBR
+                                })}
+                            </span>
                         </header>
                         <p className="line-clamp-5">
                             {issue.body}

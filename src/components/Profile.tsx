@@ -36,12 +36,12 @@ export function Profile() {
                 draggable={false}
                 className="rounded-[10px]"
             />
-            <div className="flex flex-col gap-[0.5rem]">
+            <div className="flex w-full flex-col gap-[0.5rem]">
                 <div className="flex items-center justify-between gap-[0.5rem]">
                     <h2 className="text-[1.5rem] text-base-title">{user.name}</h2>
-                    <a href={user.html_url} className="flex gap-[0.5rem] text-blue">
+                    <a href={user.html_url} className="flex gap-[0.5rem] text-[0.75rem] text-blue">
                         GITHUB
-                        <ArrowSquareOut size={18} />
+                        <ArrowSquareOut size={14} />
                     </a>
                 </div>
                 <span className="leading-[1.5rem]">

@@ -35,7 +35,7 @@ export function IssuesContextProvider({children}: IssuesContextProps) {
 
     useEffect(() => {
         fetchIssues()
-    }, [])
+    }, [fetchIssues])
 
     return (
         <IssuesContext.Provider value={{issues}}>
