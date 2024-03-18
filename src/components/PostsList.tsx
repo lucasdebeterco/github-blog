@@ -45,7 +45,7 @@ export function PostsList() {
             <div className="my-[3rem] grid grid-cols-[repeat(auto-fit,minmax(416px,1fr))] gap-[2rem]">
                 {filteredIssues.map((issue) => (
                     <Link
-                        className="flex flex-col gap-[1.25rem] rounded-[10px] bg-base-post p-[2rem]"
+                        className="flex flex-col gap-[1.25rem] rounded-[10px] border border-base-border bg-base-post p-[2rem] transition hover:bg-base-profile"
                         key={issue.id}
                         to={`/issue/${issue.number}`}
                     >

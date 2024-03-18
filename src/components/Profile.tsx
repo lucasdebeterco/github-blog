@@ -27,7 +27,7 @@ export function Profile() {
     }, [getUser])
 
     return (
-        <div className="relative mt-[-5rem] flex items-center gap-[2rem] rounded-[10px] bg-base-profile px-[2.5rem] py-[2rem]">
+        <div className="relative mt-[-6rem] flex items-center gap-[2rem] rounded-[10px] border border-base-border bg-base-profile px-[2.5rem] py-[2rem]">
             <img
                 src={user.avatar_url}
                 alt="Imagem do Perfil Github"

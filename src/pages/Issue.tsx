@@ -24,7 +24,7 @@ export function Issue() {
 
     return (
         <div>
-            <div className="relative mt-[-5rem] rounded-[10px] bg-base-profile p-[2rem]">
+            <div className="relative mt-[-6rem] rounded-[10px] border border-base-border bg-base-profile p-[2rem]">
                 <div className="flex justify-between">
                     <Link to={'/'} className="flex gap-[0.5rem] text-[0.75rem] text-blue">
                         <ArrowLeft size={14} />
