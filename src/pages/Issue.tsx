@@ -1,4 +1,6 @@
 import { ArrowLeft, ArrowSquareOut, Buildings, Chats, GithubLogo } from '@phosphor-icons/react'
+import { formatDistance } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 import { useContext } from 'react'
 import { Link, useMatch } from 'react-router-dom'
 
@@ -8,11 +10,8 @@ export function Issue() {
     const match = useMatch(
         '/issue/:issueId'
     )
-
     const { issues } = useContext(IssuesContext)
-    const issue = issues[Number(match?.params.issueId) ?? 0]
-
-    console.log(issue)
+    const issue = issues.find(issue => issue.id === Number(match?.params.issueId))
 
     return (
         <div>
@@ -23,7 +22,7 @@ export function Issue() {
                         VOLTAR
                     </Link>
 
-                    <Link to={issue?.user.html_url} className="flex gap-[0.5rem] text-[0.75rem] text-blue">
+                    <Link to={issue?.user.html_url ?? ''} className="flex gap-[0.5rem] text-[0.75rem] text-blue">
                         VER NO GITHUB
                         <ArrowSquareOut size={14}/>
                     </Link>
@@ -38,10 +37,16 @@ export function Issue() {
                         <GithubLogo size={18} className="text-base-label"/>
                         <span className="text-base-span">{issue?.user.login}</span>
                     </div>
-                    <div className="flex items-center gap-[0.5rem]">
-                        <Buildings size={18} className="text-base-label"/>
-                        <span className="text-base-span">Há {issue?.created_at}</span>
-                    </div>
+                    {issue?.created_at && (
+                        <div className="flex items-center gap-[0.5rem]">
+                            <Buildings size={18} className="text-base-label"/>
+                            <span className="text-base-span">
+                                {formatDistance(new Date(issue?.created_at), new Date(), {
+                                    addSuffix: true, locale: ptBR
+                                })}
+                            </span>
+                        </div>
+                    )}
                     <div className="flex items-center gap-[0.5rem]">
                         <Chats size={18} className="text-base-label"/>
                         <span className="text-base-span">{issue?.comments} Comentários</span>
@@ -50,8 +55,7 @@ export function Issue() {
             </div>
 
             <div className="mt-[0.5rem] p-[2rem]">
-                {issue?.body} aaaaaaaaaaaaaaaaa
+                {issue?.body}
             </div>
-        </div>
-    )
+        </div>)
 }

@@ -1,7 +1,9 @@
 import { createContext, ReactNode, useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
+
+import { mockIssues } from '../data/mockIssues.ts'
 
 interface IIssue {
+    id: number
     number: number
     title: string
     created_at: string
@@ -30,12 +32,12 @@ export function IssuesContextProvider({children}: IssuesContextProps) {
         const response = await fetch('https://api.github.com/search/issues?q=repo:lucasdebeterco/github-blog')
         const data = await response.json()
 
-        response.status === 200 ? setIssues(data.items) : toast.error(data.message)
+        response.status === 200 ? setIssues(data.items) :  setIssues(mockIssues)
     }
 
     useEffect(() => {
         fetchIssues()
-    }, [fetchIssues])
+    }, [])
 
     return (
         <IssuesContext.Provider value={{issues}}>

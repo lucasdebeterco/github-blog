@@ -35,8 +35,8 @@ export function PostsList() {
                 {filteredIssues.map((issue) => (
                     <Link
                         className="flex flex-col gap-[1.25rem] rounded-[10px] bg-base-post p-[2rem]"
-                        key={issue.title}
-                        to={`/issue/${issue.number}`}
+                        key={issue.id}
+                        to={`/issue/${issue.id}`}
                     >
                         <header className="flex justify-between">
                             <h3 className="text-[1.25rem] text-base-title">{issue.title}</h3>
