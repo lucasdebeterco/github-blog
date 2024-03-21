@@ -36,7 +36,7 @@ export function PostsList() {
                     <Link
                         className="flex flex-col gap-[1.25rem] rounded-[10px] bg-base-post p-[2rem]"
                         key={issue.id}
-                        to={`/issue/${issue.id}`}
+                        to={`/issue/${issue.number}`}
                     >
                         <header className="flex justify-between">
                             <h3 className="text-[1.25rem] text-base-title">{issue.title}</h3>

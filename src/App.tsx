@@ -15,7 +15,7 @@ export function App() {
             path: '/',
             element: <Home />,
         }, {
-            path: 'issue/:issueId',
+            path: 'issue/:issueNumber',
             element: <Issue />
         }, ]
     }])

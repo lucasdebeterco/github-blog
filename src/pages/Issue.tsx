@@ -1,17 +1,24 @@
 import { ArrowLeft, ArrowSquareOut, Buildings, Chats, GithubLogo } from '@phosphor-icons/react'
 import { formatDistance } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import { useContext } from 'react'
-import { Link, useMatch } from 'react-router-dom'
-
-import { IssuesContext } from '../context/IssuesContext.tsx'
+import { useEffect, useState } from 'react'
+import Markdown from 'react-markdown'
+import { Link, useParams } from 'react-router-dom'
 
 export function Issue() {
-    const match = useMatch(
-        '/issue/:issueId'
-    )
-    const { issues } = useContext(IssuesContext)
-    const issue = issues.find(issue => issue.id === Number(match?.params.issueId))
+    const [issue, setIssue] = useState({})
+    const { issueNumber } = useParams()
+
+    async function getIssue() {
+        const response = await fetch(`https://api.github.com/repos/lucasdebeterco/github-blog/issues/${issueNumber}`)
+        const data = await response.json()
+
+        setIssue(data)
+    }
+
+    useEffect(() => {
+        getIssue()
+    }, [])
 
     return (
         <div>
@@ -54,8 +61,9 @@ export function Issue() {
                 </div>
             </div>
 
-            <div className="mt-[0.5rem] p-[2rem]">
+            <Markdown className="mt-[0.5rem] p-[2rem]">
                 {issue?.body}
-            </div>
-        </div>)
+            </Markdown>
+        </div>
+    )
 }

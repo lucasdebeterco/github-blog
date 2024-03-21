@@ -2,7 +2,7 @@ import { createContext, ReactNode, useEffect, useState } from 'react'
 
 import { mockIssues } from '../data/mockIssues.ts'
 
-interface IIssue {
+export interface IIssue {
     id: number
     number: number
     title: string
