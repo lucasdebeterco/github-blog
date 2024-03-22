@@ -1,6 +1,6 @@
 import { ArrowSquareOut, Buildings, GithubLogo, Users } from '@phosphor-icons/react'
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { baseUser } from '../data/baseUser.ts'
 
@@ -17,14 +17,14 @@ interface IUser {
 export function Profile() {
     const [user, setUser] = useState<IUser>(baseUser)
 
-    async function getUser() {
+    const getUser = useCallback(async () => {
         const response = await axios.get('https://api.github.com/users/lucasdebeterco')
         setUser(response.data)
-    }
+    }, [])
 
     useEffect(() => {
         getUser()
-    }, [])
+    }, [getUser])
 
     return (
         <div className="relative mt-[-5rem] flex items-center gap-[2rem] rounded-[10px] bg-base-profile px-[2.5rem] py-[2rem]">

@@ -2,8 +2,8 @@ import { ArrowLeft, ArrowSquareOut, Buildings, Chats, GithubLogo } from '@phosph
 import axios from 'axios'
 import { formatDistance } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import { useEffect, useState } from 'react'
-import Markdown from 'react-markdown'
+import { useCallback, useEffect, useState } from 'react'
+import ReactMarkdown from 'react-markdown'
 import { Link, useParams } from 'react-router-dom'
 
 import { baseIssue } from '../data/baseIssue.ts'
@@ -13,14 +13,14 @@ export function Issue() {
     const [issue, setIssue] = useState<IIssue>(baseIssue)
     const { issueNumber } = useParams()
 
-    async function getIssue() {
+    const getIssue = useCallback(async () => {
         const response = await axios.get(`https://api.github.com/repos/lucasdebeterco/github-blog/issues/${issueNumber}`)
         setIssue(response.data)
-    }
+    }, [])
 
     useEffect(() => {
         getIssue()
-    }, [])
+    }, [getIssue])
 
     return (
         <div>
@@ -63,9 +63,9 @@ export function Issue() {
                 </div>
             </div>
 
-            <Markdown className="mt-[0.5rem] p-[2rem]">
+            <ReactMarkdown className="mt-[0.5rem] p-[2rem]">
                 {issue?.body}
-            </Markdown>
+            </ReactMarkdown>
         </div>
     )
 }
