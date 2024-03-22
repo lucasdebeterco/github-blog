@@ -1,19 +1,21 @@
 import { ArrowLeft, ArrowSquareOut, Buildings, Chats, GithubLogo } from '@phosphor-icons/react'
+import axios from 'axios'
 import { formatDistance } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { useEffect, useState } from 'react'
 import Markdown from 'react-markdown'
 import { Link, useParams } from 'react-router-dom'
 
+import { baseIssue } from '../data/baseIssue.ts'
+import { IIssue } from '../types/IIssue.ts'
+
 export function Issue() {
-    const [issue, setIssue] = useState({})
+    const [issue, setIssue] = useState<IIssue>(baseIssue)
     const { issueNumber } = useParams()
 
     async function getIssue() {
-        const response = await fetch(`https://api.github.com/repos/lucasdebeterco/github-blog/issues/${issueNumber}`)
-        const data = await response.json()
-
-        setIssue(data)
+        const response = await axios.get(`https://api.github.com/repos/lucasdebeterco/github-blog/issues/${issueNumber}`)
+        setIssue(response.data)
     }
 
     useEffect(() => {
@@ -29,7 +31,7 @@ export function Issue() {
                         VOLTAR
                     </Link>
 
-                    <Link to={issue?.user.html_url ?? ''} className="flex gap-[0.5rem] text-[0.75rem] text-blue">
+                    <Link to={issue?.html_url ?? ''} target="_blank" className="flex gap-[0.5rem] text-[0.75rem] text-blue">
                         VER NO GITHUB
                         <ArrowSquareOut size={14}/>
                     </Link>

@@ -1,12 +1,23 @@
+import axios from 'axios'
 import { formatDistance } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import { useContext, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { IssuesContext } from '../context/IssuesContext.tsx'
+import { mockIssues } from '../data/mockIssues.ts'
+import { IIssue } from '../types/IIssue.ts'
 
 export function PostsList() {
-    const { issues } = useContext(IssuesContext)
+    const [issues, setIssues] = useState<IIssue[]>([])
+
+    async function fetchIssues() {
+        const response = await axios.get('https://api.github.com/search/issues?q=repo:lucasdebeterco/github-blog')
+        response.status === 200 ? setIssues(response.data.items) :  setIssues(mockIssues)
+    }
+
+    useEffect(() => {
+        fetchIssues()
+    }, [])
 
     const [search, setSearch] = useState('')
     const filteredIssues = search.length > 0 ? issues.filter((filter) => filter.title.includes(search)) : issues

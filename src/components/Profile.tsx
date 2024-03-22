@@ -1,4 +1,5 @@
 import { ArrowSquareOut, Buildings, GithubLogo, Users } from '@phosphor-icons/react'
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 import { baseUser } from '../data/baseUser.ts'
@@ -17,14 +18,12 @@ export function Profile() {
     const [user, setUser] = useState<IUser>(baseUser)
 
     async function getUser() {
-        const response = await fetch('https://api.github.com/users/lucasdebeterco')
-        const data = await response.json()
-
-        return data
+        const response = await axios.get('https://api.github.com/users/lucasdebeterco')
+        setUser(response.data)
     }
 
     useEffect(() => {
-        getUser().then((data) => setUser(data))
+        getUser()
     }, [])
 
     return (
@@ -39,7 +38,7 @@ export function Profile() {
             <div className="flex w-full flex-col gap-[0.5rem]">
                 <div className="flex items-center justify-between gap-[0.5rem]">
                     <h2 className="text-[1.5rem] text-base-title">{user.name}</h2>
-                    <a href={user.html_url} className="flex gap-[0.5rem] text-[0.75rem] text-blue">
+                    <a href={user.html_url} target="_blank" className="flex gap-[0.5rem] text-[0.75rem] text-blue" rel="noreferrer">
                         GITHUB
                         <ArrowSquareOut size={14} />
                     </a>
