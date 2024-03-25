@@ -2,6 +2,7 @@ import axios from 'axios'
 import { formatDistance } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { useCallback, useEffect, useState } from 'react'
+import Skeleton from 'react-loading-skeleton'
 import { Link } from 'react-router-dom'
 
 import { mockIssues } from '../data/mockIssues.ts'
@@ -49,7 +50,7 @@ export function PostsList() {
                         key={issue.id}
                         to={`/issue/${issue.number}`}
                     >
-                        <header className="flex justify-between">
+                        <header className="flex items-center justify-between">
                             <h3 className="text-[1.25rem] text-base-title">{issue.title}</h3>
                             <span className="whitespace-nowrap text-[0.875rem] text-base-span">
                                 {formatDistance(new Date(issue.created_at), new Date(), {

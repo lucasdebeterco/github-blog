@@ -18,7 +18,7 @@ interface IUser {
 }
 
 export function Profile() {
-    const [user, setUser] = useState<IUser>(baseUser)
+    const [user, setUser] = useState<IUser>(null)
 
     const getUser = useCallback(async () => {
         const response = await axios.get('https://api.github.com/users/lucasdebeterco')
