@@ -1,3 +1,4 @@
+import { SkeletonTheme } from 'react-loading-skeleton'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import { BaseLayout } from './layouts/Layout.tsx'
@@ -20,6 +21,8 @@ export function App() {
     }])
 
     return (
-        <RouterProvider router={router} />
+        <SkeletonTheme baseColor="#0C2238" highlightColor="#525252">
+            <RouterProvider router={router} />
+        </SkeletonTheme>
     )
 }

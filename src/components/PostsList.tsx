@@ -64,5 +64,6 @@ export function PostsList() {
                     </Link>
                 ))}
             </div>
-        </>)
+        </>
+    )
 }
