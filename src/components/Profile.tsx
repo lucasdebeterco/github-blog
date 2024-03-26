@@ -5,8 +5,6 @@ import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 
-import { baseUser } from '../data/baseUser.ts'
-
 interface IUser {
     avatar_url: string
     name: string
@@ -18,7 +16,7 @@ interface IUser {
 }
 
 export function Profile() {
-    const [user, setUser] = useState<IUser>(null)
+    const [user, setUser] = useState<IUser | null>(null)
 
     const getUser = useCallback(async () => {
         const response = await axios.get('https://api.github.com/users/lucasdebeterco')

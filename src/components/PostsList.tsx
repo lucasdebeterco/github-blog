@@ -2,7 +2,6 @@ import axios from 'axios'
 import { formatDistance } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { useCallback, useEffect, useState } from 'react'
-import Skeleton from 'react-loading-skeleton'
 import { Link } from 'react-router-dom'
 
 import { mockIssues } from '../data/mockIssues.ts'

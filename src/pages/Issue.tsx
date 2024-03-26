@@ -10,7 +10,7 @@ import { Link, useParams } from 'react-router-dom'
 import { IIssue } from '../types/IIssue.ts'
 
 export function Issue() {
-    const [issue, setIssue] = useState<IIssue>(null)
+    const [issue, setIssue] = useState<IIssue | null>(null)
     const { issueNumber } = useParams()
 
     const getIssue = useCallback(async () => {
